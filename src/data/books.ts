@@ -1,5 +1,11 @@
 import type { Book } from "../types/types";
 
+export const emptyBookForm: Book = {
+  title: "",
+  author: "",
+  pages: 0,
+  available: false 
+}
 
 export const booksData: Book[] = [
   {

@@ -14,7 +14,7 @@ function Header({activePage, onPageChange}: HeaderProps) {
   
     return (
     <>
-        <nav className="navbar navbar-expand-sm bg-light navbar-light">
+        <nav className="navbar navbar-expand-sm bg-light navbar-light header">
             <div className="container-fluid">
                 <ul className="navbar-nav">
                     {links.map(page =>(
