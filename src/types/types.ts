@@ -1,6 +1,6 @@
-export type page = "Kezdőlap" | "Admin" | "Moderátor";
+export type Page = "Kezdőlap" | "Admin" | "Moderátor";
 
-export type book = {
+export type Book = {
     title: string,
     author: string,
     pages: number,

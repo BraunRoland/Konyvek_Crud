@@ -1,7 +1,7 @@
-import type { book } from "../types/types";
+import type { Book } from "../types/types";
 
 
-export const books: book[] = [
+export const booksData: Book[] = [
   {
     "title": "A Pál utcai fiúk",
     "author": "Molnár Ferenc",
