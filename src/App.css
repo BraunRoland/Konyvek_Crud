@@ -1,0 +1,11 @@
+.card {
+    margin-bottom: 10px;
+}
+
+.badge {
+    padding: 7px;
+}
+
+.row {
+    justify-content: center;
+}

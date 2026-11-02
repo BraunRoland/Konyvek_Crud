@@ -22,7 +22,7 @@ function App() {
     else if (activePage == 'Moderátor') {
       return <ModeratorPage/>
     }
-    else {return (<MainPage/>)}
+    else {return (<MainPage books={booksData}/>)}
   }
 
   return (

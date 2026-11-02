@@ -1,7 +1,7 @@
 function Footer() {
     return (
         <>
-        <footer className="site-footer">
+        <footer className="footer bg-light">
             <div className="container text-center">
                 <p>Készítette: <strong>Braun Roland</strong></p>
                 <p>Osztály: <strong>13.E</strong></p>
