@@ -5,6 +5,7 @@ type BookCardProps = Book & {
     type: Page
     onEdit?: () => void
     onDelete?: () => void
+    onChange?: () => void
 }
 
 export function Cards({
@@ -14,7 +15,8 @@ export function Cards({
     available,
     type = 'Kezdőlap',
     onEdit,
-    onDelete
+    onDelete,
+    onChange
 }: BookCardProps) {
     return (
         <>
@@ -28,6 +30,11 @@ export function Cards({
                     <div>
                         <button type="button" className=" cardBtn btn btn-sm btn-warning" onClick={onEdit}>Modósítás</button>
                         <button type="button" className=" cardBtn btn btn-sm btn-danger" onClick={onDelete}>Törlés</button>
+                    </div>
+                )}
+                {type == 'Moderátor' && (
+                    <div>
+                        <button type="button" onClick={onChange} className={`btn cardBtn ${available? "btn-outline-danger":"btn-outline-success"}`}>{available? "elfogyott":"elérhető"}</button>
                     </div>
                 )}
             </div>

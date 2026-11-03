@@ -16,8 +16,7 @@ function App() {
   const [editIndex, setEditIndex] = useState<number|null>(null)
 
   function handleChange(event: ChangeEvent<HTMLInputElement>, field: keyof Book) {
-    let value;
-    field == 'pages'? value = Number(event.target.value) : value = event.target.value;
+    const value = field == 'pages'? Number(event.target.value) : event.target.value;
     setFormData((editedBook) => ({...editedBook, [field]: value}));
   }
 
@@ -27,21 +26,28 @@ function App() {
   
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const newBook: Book = {
-      title: formData.title.trim(),
-      author: formData.author.trim(),
-      pages: Number(formData.pages),
-      available: formData.available
+    try{
+      const newBook: Book = {
+        title: formData.title.trim(),
+        author: formData.author.trim(),
+        pages: Number(formData.pages),
+        available: formData.available
+      }
+      validacio(newBook);
+      if (editIndex !== null) {
+        setBooks(current => (current.map((book,index) => (index == editIndex? newBook : book))));
+        setEditIndex(null);
+      }
+      else {
+        setBooks(current => [...current,newBook]);
+      }
+      setFormData(emptyBookForm);
     }
-    validacio(newBook);
-    if (editIndex !== null) {
-      setBooks(current => (current.map((book,index) => (index == editIndex? newBook : book))));
-      setEditIndex(null);
+    catch (err) {
+      if (err instanceof Error) {
+        alert(err.message);
+      }
     }
-    else {
-      setBooks(current => [...current,newBook]);
-    }
-    setFormData(emptyBookForm)
   }
 
   function validacio(newBook: Book) {
@@ -69,6 +75,12 @@ function App() {
     }
   }
 
+  function changeAvability(index: number) {
+    console.log(index);
+    setBooks((current) => (current.map((konyv,bIndex) => index == bIndex? {...konyv, available: !konyv.available} :konyv)))
+    console.log(books[index])
+  }
+
   function renderPage() {
     if (activePage == 'Admin') {
       return(
@@ -89,7 +101,12 @@ function App() {
       )
     }
     else if (activePage == 'Moderátor') {
-      return <ModeratorPage/>
+      return (
+      <ModeratorPage
+        books={books}
+        onChange={changeAvability}
+      />
+      )
     }
     else {return (<MainPage books={books}/>)}
   }
